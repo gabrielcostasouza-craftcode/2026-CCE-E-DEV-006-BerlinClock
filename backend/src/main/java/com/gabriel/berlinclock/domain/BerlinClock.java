@@ -20,9 +20,13 @@ public record BerlinClock(List<IBerlinRow> rows) {
         );
     }
 
-    public String getTime(LocalTime time) {
+    public String getBerlinTime(LocalTime time) {
         var lamps = rows.stream().map(e -> e.parse(time)).toList();
         return lamps.stream().map(Lamp::convertListToLetterString).collect(Collectors.joining());
+    }
+
+    public LocalTime decodeToBerlinTime(String berlinTime){
+        throw new IllegalArgumentException("Not yet implemented!");
     }
 
 }

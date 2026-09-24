@@ -95,7 +95,18 @@ class BerlinclockParserTests {
             "11:37:01,	ORROOROOOYYRYYRYOOOOYYOO"
     })
     void fullBerlinClockGetsAllRows(LocalTime time, String expectedLights) {
-        assertThat(bc.getTime(time)).isEqualTo(expectedLights);
+        assertThat(bc.getBerlinTime(time)).isEqualTo(expectedLights);
+    }
+
+    @ParameterizedTest(name = "{0} -> {1}")
+    @CsvSource({
+            "YOOOOOOOOOOOOOOOOOOOOOOO,	00:00:00",
+            "ORRRRRRROYYRYYRYYRYYYYYY,	23:59:59",
+            "YRRROROOOYYRYYRYYRYOOOOO,	16:50:06",
+            "ORROOROOOYYRYYRYOOOOYYOO,	11:37:01"
+    })
+    void fullBerlinToDigital(String berlinTime, LocalTime expectedTime) {
+        assertThat(bc.decodeToBerlinTime(berlinTime)).isEqualTo(expectedTime);
     }
 
 
