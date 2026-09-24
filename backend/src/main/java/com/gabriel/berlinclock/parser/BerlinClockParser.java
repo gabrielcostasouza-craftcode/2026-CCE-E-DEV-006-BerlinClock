@@ -36,7 +36,7 @@ public class BerlinClockParser {
     }
 
     public String secondsLampRow(LocalTime time) {
-        throw new UnsupportedOperationException("This convertor hasn't been implemented yet");
+        return time.getSecond() % 2 == 0 ? "Y" : "O";
     }
 
     public String parseFull(LocalTime time) {
