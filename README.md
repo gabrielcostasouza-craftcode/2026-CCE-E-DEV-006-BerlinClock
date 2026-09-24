@@ -10,4 +10,4 @@
 ## frontend: 
     - cd frontend/
     - npm install
-    - run: 'vite' in terminal
+    - run: 'npm run dev' in terminal
