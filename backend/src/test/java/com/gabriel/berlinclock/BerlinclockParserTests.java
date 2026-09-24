@@ -3,7 +3,6 @@ package com.gabriel.berlinclock;
 import com.gabriel.berlinclock.domain.BerlinClock;
 import com.gabriel.berlinclock.domain.Lamp;
 import com.gabriel.berlinclock.domain.row.*;
-import com.gabriel.berlinclock.parser.BerlinClockParser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
