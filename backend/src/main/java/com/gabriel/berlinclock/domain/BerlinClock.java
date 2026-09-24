@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public record BerlinClock(List<IBerlinRow> rows) {
 
-    public static BerlinClock factory() {
+    public static BerlinClock standard() {
         return new BerlinClock(
                 List.of(
                         new SecondsLampRow(),

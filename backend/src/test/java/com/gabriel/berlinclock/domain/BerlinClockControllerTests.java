@@ -3,9 +3,13 @@ package com.gabriel.berlinclock.domain;
 
 import com.gabriel.berlinclock.controller.BerlinClockController;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.time.LocalTime;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -17,12 +21,18 @@ public class BerlinClockControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    void digitalTimeToBerlinTime() throws Exception {
-        mockMvc.perform(get("/api/to-berlin-time").param("localtime", "23:59:59"))
+    @ParameterizedTest(name = "{0} -> {1}")
+    @CsvSource({
+            "00:00:00,	YOOOOOOOOOOOOOOOOOOOOOOO",
+            "23:59:59,	ORRRRRRROYYRYYRYYRYYYYYY",
+            "16:50:06,	YRRROROOOYYRYYRYYRYOOOOO",
+            "11:37:01,	ORROOROOOYYRYYRYOOOOYYOO"
+    })
+    void digitalTimeToBerlinTime(String time, String expectedLights) throws Exception {
+        mockMvc.perform(get("/api/to-berlin-time").param("localtime", time))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.digitalTime").value("23:59:59"))
-                .andExpect(jsonPath("$.berlinTime").value("ORRRRRRROYYRYYRYYRYYYYYY"));
+                .andExpect(jsonPath("$.digitalTime").value(time))
+                .andExpect(jsonPath("$.berlinTime").value(expectedLights));
     }
 
     @Test

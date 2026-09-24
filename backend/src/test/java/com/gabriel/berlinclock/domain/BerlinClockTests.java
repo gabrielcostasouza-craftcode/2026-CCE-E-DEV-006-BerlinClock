@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class BerlinClockTests {
 
-    private final BerlinClock bc = BerlinClock.factory();
+    private final BerlinClock bc = BerlinClock.standard();
     private final IBerlinRow singleMinuteRow = new SingleMinuteRow();
     private final IBerlinRow fiveMinuteRow = new FiveMinuteRow();
     private final IBerlinRow singleHourRow = new SingleHourRow();
