@@ -28,7 +28,7 @@ class BerlinclockParserTests {
             "12:35:00,	OOOO"
     })
     void singleMinuteRowLightsUpEveryMinuteNoMultiplesFive(LocalTime time, String expectedLights) {
-        assertThat(bcParser.singleMinuteRow(time).equals(expectedLights));
+        assertThat(bcParser.singleMinuteRow(time)).isEqualTo(expectedLights);
     }
 
 
@@ -41,7 +41,7 @@ class BerlinclockParserTests {
             "12:35:00,	YYRYYRYOOOO"
     })
     void fiveMinuteRowLightsUpLampForEveryFiveMinutesAndRedEveryThirdLamp(LocalTime time, String expectedLights) {
-        assertThat(bcParser.fiveMinuteRow(time).equals(expectedLights));
+        assertThat(bcParser.fiveMinuteRow(time)).isEqualTo(expectedLights);
     }
 
 
@@ -54,7 +54,7 @@ class BerlinclockParserTests {
             "14:35:00,	RRRR"
     })
     void singleHourRowLightsUpEveryMinuteNoMultiplesFive(LocalTime time, String expectedLights) {
-        assertThat(bcParser.singleHourRow(time).equals(expectedLights));
+        assertThat(bcParser.singleHourRow(time)).isEqualTo(expectedLights);
     }
 
     @ParameterizedTest(name = "{0} -> {1}")
@@ -66,7 +66,7 @@ class BerlinclockParserTests {
             "16:35:00,	RRRO"
     })
     void fireHourRowLightsUpRedLampEveryFifthHour(LocalTime time, String expectedLights) {
-        assertThat(bcParser.fiveHourRow(time).equals(expectedLights));
+        assertThat(bcParser.fiveHourRow(time)).isEqualTo(expectedLights);
     }
 
     @ParameterizedTest(name = "{0} -> {1}")
@@ -75,7 +75,7 @@ class BerlinclockParserTests {
             "23:59:59,	O"
     })
     void lampOnEveryEvenSecond(LocalTime time, String expectedLights) {
-        assertThat(bcParser.secondsLampRow(time).equals(expectedLights));
+        assertThat(bcParser.secondsLampRow(time)).isEqualTo(expectedLights);
     }
 
     @ParameterizedTest(name = "{0} -> {1}")
@@ -86,7 +86,7 @@ class BerlinclockParserTests {
             "11:37:01,	ORROOROOOYYRYYRYOOOOYYOO"
     })
     void fullBerlinClockGetsAllRows(LocalTime time, String expectedLights) {
-        assertThat(bcParser.parseFull(time).equals(expectedLights));
+        assertThat(bcParser.parseFull(time)).isEqualTo(expectedLights);
     }
 
 
