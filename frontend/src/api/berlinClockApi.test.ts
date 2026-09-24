@@ -1,4 +1,4 @@
-import { fetchBerlinTime } from './berlinClockApi'
+import { fetchBerlinTime, fetchDigitalTime } from './berlinClockApi'
 
 const clock = {
   digitalTime: '16:50:06',
@@ -20,5 +20,13 @@ describe('berlinClockApi', () => {
 
     await expect(fetchBerlinTime('16:50:06')).resolves.toEqual(clock)
     expect(fetchMock).toHaveBeenCalledWith('/api/to-berlin-time?time=16%3A50%3A06')
+  })
+  
+  it('Digital time to Berlin time', async () => {
+    const fetchMock = respondWith(200, clock)
+    vi.stubGlobal('fetch', fetchMock)
+
+    await expect(fetchDigitalTime('YRRROROOOYYRYYRYYRYOOOOO')).resolves.toEqual(clock)
+    expect(fetchMock).toHaveBeenCalledWith('/api/to-digital-time?time=YRRROROOOYYRYYRYYRYOOOOO')
   })
 })

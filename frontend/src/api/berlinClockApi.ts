@@ -8,10 +8,14 @@ export function fetchBerlinTime(localtime: string): Promise<ClockResponse> {
   return get(`/api/to-berlin-time?${new URLSearchParams({ localtime })}`)
 }
 
+export function fetchDigitalTime(berlinTime: string): Promise<ClockResponse> {
+  throw new Error('not implemented')
+}
+
 async function get(url: string): Promise<ClockResponse> {
   const response = await fetch(url)
   if (response.ok) return response.json()
 
   const problem = await response.json().catch(() => null)
-  throw new Error(problem?.error ?? `Request failed with status ${response.status}`)
+  throw new Error(problem?.detail ?? `Request failed with status ${response.status}`)
 }
