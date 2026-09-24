@@ -4,8 +4,8 @@ export type ClockResponse = {
   rows: string[]
 }
 
-export function fetchBerlinTime(time: string): Promise<ClockResponse> {
-  return get(`/api/to-berlin-time?${new URLSearchParams({ time })}`)
+export function fetchBerlinTime(localtime: string): Promise<ClockResponse> {
+  return get(`/api/to-berlin-time?${new URLSearchParams({ localtime })}`)
 }
 
 async function get(url: string): Promise<ClockResponse> {
