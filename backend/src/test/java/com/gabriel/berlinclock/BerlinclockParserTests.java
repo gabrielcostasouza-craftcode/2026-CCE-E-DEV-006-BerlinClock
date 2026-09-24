@@ -1,9 +1,7 @@
 package com.gabriel.berlinclock;
 
 import com.gabriel.berlinclock.domain.Lamp;
-import com.gabriel.berlinclock.domain.row.FiveMinuteRow;
-import com.gabriel.berlinclock.domain.row.IBerlinRow;
-import com.gabriel.berlinclock.domain.row.SingleMinuteRow;
+import com.gabriel.berlinclock.domain.row.*;
 import com.gabriel.berlinclock.parser.BerlinClockParser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,6 +18,8 @@ class BerlinclockParserTests {
     private final BerlinClockParser bcParser = new BerlinClockParser();
     private final IBerlinRow singleMinuteRow = new SingleMinuteRow();
     private final IBerlinRow fiveMinuteRow = new FiveMinuteRow();
+    private final IBerlinRow singleHourRow = new SingleHourRow();
+    private final IBerlinRow fiveHourRow = new FiveHourRow();
 
     @Test
     void contextLoads() {
@@ -62,7 +62,7 @@ class BerlinclockParserTests {
             "14:35:00,	RRRR"
     })
     void singleHourRowLightsUpEveryMinuteNoMultiplesFive(LocalTime time, String expectedLights) {
-        assertThat(bcParser.singleHourRow(time)).isEqualTo(expectedLights);
+        assertThat(singleHourRow.parse(time)).isEqualTo(Lamp.getLampsFromString(expectedLights));
     }
 
     @ParameterizedTest(name = "{0} -> {1}")
@@ -74,7 +74,7 @@ class BerlinclockParserTests {
             "16:35:00,	RRRO"
     })
     void fireHourRowLightsUpRedLampEveryFifthHour(LocalTime time, String expectedLights) {
-        assertThat(bcParser.fiveHourRow(time)).isEqualTo(expectedLights);
+        assertThat(fiveHourRow.parse(time)).isEqualTo(Lamp.getLampsFromString(expectedLights));
     }
 
     @ParameterizedTest(name = "{0} -> {1}")
