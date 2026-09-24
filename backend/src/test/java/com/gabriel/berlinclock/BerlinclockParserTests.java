@@ -113,7 +113,7 @@ class BerlinclockParserTests {
             "ORROOROOOYYRYYRYOOOOYYOO,	11:37:01"
     })
     void fullBerlinToDigital(String berlinTime, LocalTime expectedTime) {
-        assertThat(bc.decodeToBerlinTime(berlinTime)).isEqualTo(expectedTime);
+        assertThat(bc.decodeBerlinTimeToLocalTime(berlinTime)).isEqualTo(expectedTime);
     }
 
 }

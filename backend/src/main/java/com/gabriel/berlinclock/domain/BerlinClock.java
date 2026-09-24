@@ -25,7 +25,7 @@ public record BerlinClock(List<IBerlinRow> rows) {
         return lamps.stream().map(Lamp::convertListToLetterString).collect(Collectors.joining());
     }
 
-    public LocalTime decodeToBerlinTime(String berlinTime) {
+    public LocalTime decodeBerlinTimeToLocalTime(String berlinTime) {
         int maxLength = rows.stream().mapToInt(IBerlinRow::size).sum();
         if(berlinTime.length() != maxLength){
             throw new RuntimeException("Received length is not equal one that we expect");
