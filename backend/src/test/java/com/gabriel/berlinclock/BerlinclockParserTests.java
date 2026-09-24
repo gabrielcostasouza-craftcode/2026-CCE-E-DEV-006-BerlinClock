@@ -1,6 +1,7 @@
 package com.gabriel.berlinclock;
 
 import com.gabriel.berlinclock.domain.Lamp;
+import com.gabriel.berlinclock.domain.row.FiveMinuteRow;
 import com.gabriel.berlinclock.domain.row.IBerlinRow;
 import com.gabriel.berlinclock.domain.row.SingleMinuteRow;
 import com.gabriel.berlinclock.parser.BerlinClockParser;
@@ -18,6 +19,7 @@ class BerlinclockParserTests {
 
     private final BerlinClockParser bcParser = new BerlinClockParser();
     private final IBerlinRow singleMinuteRow = new SingleMinuteRow();
+    private final IBerlinRow fiveMinuteRow = new FiveMinuteRow();
 
     @Test
     void contextLoads() {
@@ -46,7 +48,8 @@ class BerlinclockParserTests {
             "12:35:00,	YYRYYRYOOOO"
     })
     void fiveMinuteRowLightsUpLampForEveryFiveMinutesAndRedEveryThirdLamp(LocalTime time, String expectedLights) {
-        assertThat(bcParser.fiveMinuteRow(time)).isEqualTo(expectedLights);
+        assertThat(fiveMinuteRow.parse(time)).isEqualTo(Lamp.getLampsFromString(expectedLights));
+
     }
 
 
