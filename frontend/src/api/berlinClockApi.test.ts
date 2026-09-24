@@ -19,7 +19,7 @@ describe('berlinClockApi', () => {
     vi.stubGlobal('fetch', fetchMock)
 
     await expect(fetchBerlinTime('16:50:06')).resolves.toEqual(clock)
-    expect(fetchMock).toHaveBeenCalledWith('/api/to-berlin-time?time=16%3A50%3A06')
+    expect(fetchMock).toHaveBeenCalledWith('/api/to-berlin-time?localtime=16%3A50%3A06')
   })
   
   it('Digital time to Berlin time', async () => {
@@ -27,6 +27,6 @@ describe('berlinClockApi', () => {
     vi.stubGlobal('fetch', fetchMock)
 
     await expect(fetchDigitalTime('YRRROROOOYYRYYRYYRYOOOOO')).resolves.toEqual(clock)
-    expect(fetchMock).toHaveBeenCalledWith('/api/to-digital-time?time=YRRROROOOYYRYYRYYRYOOOOO')
+    expect(fetchMock).toHaveBeenCalledWith('/api/to-digital-time?berlinTime=YRRROROOOYYRYYRYYRYOOOOO')
   })
 })

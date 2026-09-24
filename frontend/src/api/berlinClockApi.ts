@@ -9,7 +9,7 @@ export function fetchBerlinTime(localtime: string): Promise<ClockResponse> {
 }
 
 export function fetchDigitalTime(berlinTime: string): Promise<ClockResponse> {
-  throw new Error('not implemented')
+  return get(`/api/to-digital-time?${new URLSearchParams({ berlinTime })}`)
 }
 
 async function get(url: string): Promise<ClockResponse> {
