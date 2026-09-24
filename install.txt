@@ -1,0 +1,12 @@
+
+
+npm create vite@latest frontend -- --template react-ts
+
+
+
+builder vite
+	
+npm install
+
+start frontend by typing 'vite' in the terminal
+
