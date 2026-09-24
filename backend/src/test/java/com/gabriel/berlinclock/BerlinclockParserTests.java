@@ -20,6 +20,7 @@ class BerlinclockParserTests {
     private final IBerlinRow fiveMinuteRow = new FiveMinuteRow();
     private final IBerlinRow singleHourRow = new SingleHourRow();
     private final IBerlinRow fiveHourRow = new FiveHourRow();
+    private final IBerlinRow secondsLamp = new SecondsLampRow();
 
     @Test
     void contextLoads() {
@@ -83,7 +84,7 @@ class BerlinclockParserTests {
             "23:59:59,	O"
     })
     void lampOnEveryEvenSecond(LocalTime time, String expectedLights) {
-        assertThat(bcParser.secondsLampRow(time)).isEqualTo(expectedLights);
+        assertThat(secondsLamp.parse(time)).isEqualTo(Lamp.getLampsFromString(expectedLights));
     }
 
     @ParameterizedTest(name = "{0} -> {1}")
