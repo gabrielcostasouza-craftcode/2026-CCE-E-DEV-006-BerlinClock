@@ -12,7 +12,7 @@ public class BerlinClockParser {
 
     //The final two rows represent the minutes. The upper row represents 5 minute blocks, and is made up of 11 lamps- every third lamp is red, the rest are yellow.
     public String fiveMinuteRow(LocalTime time) {
-        int lightedUpLamps = time.getMinute() % 5; // 5 bcs every lamp is 5 minutes.
+        int lightedUpLamps = time.getMinute() / 5; // 5 bcs every lamp is 5 minutes.
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= 11; i++) { // max 11 lamps
             if(i > lightedUpLamps) {
