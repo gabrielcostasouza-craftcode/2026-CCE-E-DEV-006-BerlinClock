@@ -25,8 +25,20 @@ public record BerlinClock(List<IBerlinRow> rows) {
         return lamps.stream().map(Lamp::convertListToLetterString).collect(Collectors.joining());
     }
 
-    public LocalTime decodeToBerlinTime(String berlinTime){
-        throw new IllegalArgumentException("Not yet implemented!");
+    public LocalTime decodeToBerlinTime(String berlinTime) {
+        int maxLength = rows.stream().mapToInt(IBerlinRow::size).sum();
+        if(berlinTime.length() != maxLength){
+            throw new RuntimeException("Received length is not equal one that we expect");
+        }
+
+        var lamps = Lamp.getLampsFromString(berlinTime);
+        int totalSeconds = 0;
+        int index = 0;
+        for (IBerlinRow row : rows) {
+            totalSeconds += row.decode(lamps.subList(index, index + row.size()));
+            index += row.size();
+        }
+        return LocalTime.ofSecondOfDay(totalSeconds);
     }
 
 }

@@ -8,5 +8,7 @@ import java.util.List;
 public interface IBerlinRow {
     List<Lamp> parse(LocalTime time);
 
+    int decode(List<Lamp> lamps);
+
     int size();
 }

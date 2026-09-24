@@ -99,16 +99,21 @@ class BerlinclockParserTests {
     }
 
     @ParameterizedTest(name = "{0} -> {1}")
+    // We cannot get the full seconds back since we only track even and odds. Hence why I changed
+//    @CsvSource({
+//            "YOOOOOOOOOOOOOOOOOOOOOOO,	00:00:00",
+//            "ORRRRRRROYYRYYRYYRYYYYYY,	23:59:59",
+//            "YRRROROOOYYRYYRYYRYOOOOO,	16:50:06",
+//            "ORROOROOOYYRYYRYOOOOYYOO,	11:37:01"
+//    })
     @CsvSource({
             "YOOOOOOOOOOOOOOOOOOOOOOO,	00:00:00",
-            "ORRRRRRROYYRYYRYYRYYYYYY,	23:59:59",
-            "YRRROROOOYYRYYRYYRYOOOOO,	16:50:06",
+            "ORRRRRRROYYRYYRYYRYYYYYY,	23:59:01",
+            "YRRROROOOYYRYYRYYRYOOOOO,	16:50:00",
             "ORROOROOOYYRYYRYOOOOYYOO,	11:37:01"
     })
     void fullBerlinToDigital(String berlinTime, LocalTime expectedTime) {
         assertThat(bc.decodeToBerlinTime(berlinTime)).isEqualTo(expectedTime);
     }
-
-
 
 }

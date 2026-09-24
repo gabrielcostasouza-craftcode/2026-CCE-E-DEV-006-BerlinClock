@@ -19,4 +19,9 @@ public class FiveHourRow extends BerlinRow {
     protected Lamp lightLampUpAtPositions(int pos) {
         return Lamp.RED;
     }
+
+    @Override
+    protected int secondsPerLamp() {
+        return 5 * 60 * 60;
+    }
 }

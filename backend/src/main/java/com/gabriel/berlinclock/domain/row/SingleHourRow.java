@@ -19,4 +19,9 @@ public class SingleHourRow extends BerlinRow {
     protected Lamp lightLampUpAtPositions(int pos) {
         return Lamp.RED;
     }
+
+    @Override
+    protected int secondsPerLamp() {
+        return 60 * 60;
+    }
 }

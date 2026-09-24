@@ -20,6 +20,11 @@ public abstract class BerlinRow implements IBerlinRow {
     }
 
     @Override
+    public int decode(List<Lamp> lamps) {
+        return (int) lamps.stream().filter(l -> l != Lamp.OFF).count() * secondsPerLamp();
+    }
+
+    @Override
     public int size() {
         return amountOfLamps;
     }
@@ -27,4 +32,6 @@ public abstract class BerlinRow implements IBerlinRow {
     protected abstract int lightedUpLamps(LocalTime time);
 
     protected abstract Lamp lightLampUpAtPositions(int pos);
+
+    protected abstract int secondsPerLamp();
 }

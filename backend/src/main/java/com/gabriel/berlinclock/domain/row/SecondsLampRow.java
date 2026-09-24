@@ -13,6 +13,11 @@ public class SecondsLampRow implements IBerlinRow {
     }
 
     @Override
+    public int decode(List<Lamp> lamps) {
+        return lamps.getFirst() == Lamp.YELLOW ? 0 : 1;
+    }
+
+    @Override
     public int size() {
         return 1;
     }

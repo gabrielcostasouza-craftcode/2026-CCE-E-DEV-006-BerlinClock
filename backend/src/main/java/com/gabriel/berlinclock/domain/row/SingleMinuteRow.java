@@ -19,4 +19,9 @@ public class SingleMinuteRow extends BerlinRow {
     protected Lamp lightLampUpAtPositions(int pos) {
         return Lamp.YELLOW;
     }
+
+    @Override
+    protected int secondsPerLamp() {
+        return 60;
+    }
 }
