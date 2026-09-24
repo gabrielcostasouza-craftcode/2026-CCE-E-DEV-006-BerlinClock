@@ -1,6 +1,13 @@
 
+# Used to generate scaffold: 
 
-npm create vite@latest frontend -- --template react-ts
+- React: npm create vite@latest frontend -- --template react-ts
+- Spring Boot + Web dep: https://start.spring.io/
 
 
-npm install
+# Run:
+
+## frontend: 
+    - cd frontend/
+    - npm install
+    - run: 'vite' in terminal
