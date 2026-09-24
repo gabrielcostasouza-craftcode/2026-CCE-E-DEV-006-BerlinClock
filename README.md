@@ -11,3 +11,10 @@
     - cd frontend/
     - npm install
     - run: 'npm run dev' in terminal
+
+
+
+# Links:
+- https://stephane-genicot.github.io/BerlinClock.html
+- https://agilekatas.co.uk/katas/BerlinClock-Kata
+- 
