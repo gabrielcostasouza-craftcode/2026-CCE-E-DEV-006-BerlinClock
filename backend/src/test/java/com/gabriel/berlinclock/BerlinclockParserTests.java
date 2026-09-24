@@ -1,5 +1,6 @@
 package com.gabriel.berlinclock;
 
+import com.gabriel.berlinclock.domain.BerlinClock;
 import com.gabriel.berlinclock.domain.Lamp;
 import com.gabriel.berlinclock.domain.row.*;
 import com.gabriel.berlinclock.parser.BerlinClockParser;
@@ -15,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class BerlinclockParserTests {
 
-    private final BerlinClockParser bcParser = new BerlinClockParser();
+    private final BerlinClock bc = BerlinClock.factory();
     private final IBerlinRow singleMinuteRow = new SingleMinuteRow();
     private final IBerlinRow fiveMinuteRow = new FiveMinuteRow();
     private final IBerlinRow singleHourRow = new SingleHourRow();
@@ -95,7 +96,7 @@ class BerlinclockParserTests {
             "11:37:01,	ORROOROOOYYRYYRYOOOOYYOO"
     })
     void fullBerlinClockGetsAllRows(LocalTime time, String expectedLights) {
-        assertThat(bcParser.parseFull(time)).isEqualTo(expectedLights);
+        assertThat(bc.getTime(time)).isEqualTo(expectedLights);
     }
 
 
