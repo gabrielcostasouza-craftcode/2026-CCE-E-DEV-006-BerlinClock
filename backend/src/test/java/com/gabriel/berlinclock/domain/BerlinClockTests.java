@@ -1,7 +1,5 @@
-package com.gabriel.berlinclock;
+package com.gabriel.berlinclock.domain;
 
-import com.gabriel.berlinclock.domain.BerlinClock;
-import com.gabriel.berlinclock.domain.Lamp;
 import com.gabriel.berlinclock.domain.row.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +11,7 @@ import java.time.LocalTime;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-class BerlinclockParserTests {
+class BerlinClockTests {
 
     private final BerlinClock bc = BerlinClock.factory();
     private final IBerlinRow singleMinuteRow = new SingleMinuteRow();
