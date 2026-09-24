@@ -56,7 +56,7 @@ public class BerlinClockControllerTests {
             "ORROOROOOYYRYYRYOOOOYYOO,	11:37:01"
     })
     void berlinTimeToDigitalTime(String berlinTime, String time) throws Exception {
-        mockMvc.perform(get("/api/to-digital-time").param("localtime", time))
+        mockMvc.perform(get("/api/to-digital-time").param("berlinTime", berlinTime))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.digitalTime").value(time))
                 .andExpect(jsonPath("$.berlinTime").value(berlinTime));
