@@ -1,5 +1,8 @@
 package com.gabriel.berlinclock;
 
+import com.gabriel.berlinclock.domain.Lamp;
+import com.gabriel.berlinclock.domain.row.IBerlinRow;
+import com.gabriel.berlinclock.domain.row.SingleMinuteRow;
 import com.gabriel.berlinclock.parser.BerlinClockParser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BerlinclockParserTests {
 
     private final BerlinClockParser bcParser = new BerlinClockParser();
+    private final IBerlinRow singleMinuteRow = new SingleMinuteRow();
 
     @Test
     void contextLoads() {
@@ -27,8 +31,9 @@ class BerlinclockParserTests {
             "12:34:00,	YYYY",
             "12:35:00,	OOOO"
     })
+
     void singleMinuteRowLightsUpEveryMinuteNoMultiplesFive(LocalTime time, String expectedLights) {
-        assertThat(bcParser.singleMinuteRow(time)).isEqualTo(expectedLights);
+        assertThat(singleMinuteRow.parse(time)).isEqualTo(Lamp.getLampsFromString(expectedLights));
     }
 
 
