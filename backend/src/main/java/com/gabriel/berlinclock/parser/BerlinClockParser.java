@@ -40,6 +40,10 @@ public class BerlinClockParser {
     }
 
     public String parseFull(LocalTime time) {
-        throw new UnsupportedOperationException("This convertor hasn't been implemented yet");
+        return secondsLampRow(time) +
+                fiveHourRow(time) +
+                singleHourRow(time) +
+                fiveMinuteRow(time) +
+                singleMinuteRow(time);
     }
 }
