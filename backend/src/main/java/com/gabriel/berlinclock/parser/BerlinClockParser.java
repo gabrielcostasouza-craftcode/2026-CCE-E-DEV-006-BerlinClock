@@ -5,6 +5,7 @@ import java.time.LocalTime;
 public class BerlinClockParser {
 
     public String singleMinuteRow(LocalTime time) {
-        throw new UnsupportedOperationException("This convertor hasn't been implemented yet");
+        int lightedUpLamps = time.getMinute() % 5; //5 because every 5th min lamp will be on another row.
+        return "Y".repeat(lightedUpLamps) + "0".repeat(4-lightedUpLamps);
     }
 }
