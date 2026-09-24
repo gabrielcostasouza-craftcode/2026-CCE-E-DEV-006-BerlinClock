@@ -24,4 +24,9 @@ public class BerlinClockController {
     public BerlinClockResponse toBerlinTime(@RequestParam @DateTimeFormat(pattern = "HH:mm:ss") LocalTime localtime) {
         return BerlinClockResponse.createFrom(localtime, clock);
     }
+
+    @GetMapping("/to-digital-time")
+    public BerlinClockResponse toDigitalTime(@RequestParam String berlinTime) {
+        return BerlinClockResponse.createFrom(berlinTime, clock);
+    }
 }
