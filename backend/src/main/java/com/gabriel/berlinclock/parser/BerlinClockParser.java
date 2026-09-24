@@ -27,7 +27,7 @@ public class BerlinClockParser {
     //The lower row represents 1 hour blocks and is also made up of 4 red lamps.
     public String singleHourRow(LocalTime time) {
         int lightedUpLamps = time.getHour() % 5; //5 because every 5th hour lamp will be on another row.
-        return "Y".repeat(lightedUpLamps) + "O".repeat(4-lightedUpLamps);
+        return "R".repeat(lightedUpLamps) + "O".repeat(4-lightedUpLamps);
     }
 
     public String fiveHourRow(LocalTime time) {
