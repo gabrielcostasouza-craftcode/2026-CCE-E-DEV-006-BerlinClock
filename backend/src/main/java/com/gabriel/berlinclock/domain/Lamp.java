@@ -20,7 +20,7 @@ public enum Lamp {
             if(value.letter == letter)
                 return value;
         }
-        throw new IllegalArgumentException(String.format("No lamp found with letter: '%s'", letter));
+        throw new InvalidBerlinTimeException(String.format("No lamp found with letter: '%s'", letter));
     }
 
     public static List<Lamp> getLampsFromString(String letters){
