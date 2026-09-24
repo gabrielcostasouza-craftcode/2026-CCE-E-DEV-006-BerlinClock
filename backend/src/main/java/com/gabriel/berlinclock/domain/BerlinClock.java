@@ -21,8 +21,12 @@ public record BerlinClock(List<IBerlinRow> rows) {
     }
 
     public String getBerlinTime(LocalTime time) {
+        return getRows(time).stream().collect(Collectors.joining());
+    }
+
+    public List<String> getRows(LocalTime time) {
         var lamps = rows.stream().map(e -> e.parse(time)).toList();
-        return lamps.stream().map(Lamp::convertListToLetterString).collect(Collectors.joining());
+        return lamps.stream().map(Lamp::convertListToLetterString).toList();
     }
 
     public LocalTime decodeBerlinTimeToLocalTime(String berlinTime) {

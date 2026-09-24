@@ -97,6 +97,22 @@ class BerlinClockTests {
     }
 
     @ParameterizedTest(name = "{0} -> {1}")
+    @CsvSource({
+            "23:59:59,	ORRRRRRROYYRYYRYYRYYYYYY, O, RRRR, RRRO, YYRYYRYYRYY, YYYY",
+
+            "16:50:06,	YRRROROOOYYRYYRYYRYOOOOO, Y, RRRO, ROOO, YYRYYRYYRYO, OOOO",
+    })
+    void localTimeReturnsRows(LocalTime time, String expectedLights, String seconds, String fiveHour, String singleHour, String fiveMinutes, String singleMinutes) {
+        assertThat(bc.getBerlinTime(time)).isEqualTo(expectedLights);
+        assertThat(bc.getRows(time).get(0)).isEqualTo(seconds);
+        assertThat(bc.getRows(time).get(1)).isEqualTo(fiveHour);
+        assertThat(bc.getRows(time).get(2)).isEqualTo(singleHour);
+        assertThat(bc.getRows(time).get(3)).isEqualTo(fiveMinutes);
+        assertThat(bc.getRows(time).get(4)).isEqualTo(singleMinutes);
+    }
+
+
+    @ParameterizedTest(name = "{0} -> {1}")
     // We cannot get the full seconds back since we only track even and odds. Hence why I changed
 //    @CsvSource({
 //            "YOOOOOOOOOOOOOOOOOOOOOOO,	00:00:00",
