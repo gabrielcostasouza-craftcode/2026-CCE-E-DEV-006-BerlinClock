@@ -5,6 +5,13 @@ export type ClockResponse = {
 }
 
 export function fetchBerlinTime(time: string): Promise<ClockResponse> {
-  throw new Error('not implemented ')
+  return get(`/api/to-berlin-time?${new URLSearchParams({ time })}`)
 }
 
+async function get(url: string): Promise<ClockResponse> {
+  const response = await fetch(url)
+  if (response.ok) return response.json()
+
+  const problem = await response.json().catch(() => null)
+  throw new Error(problem?.error ?? `Request failed with status ${response.status}`)
+}

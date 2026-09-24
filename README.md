@@ -11,6 +11,8 @@
     - cd frontend/
     - npm install
     - run: 'npm run dev' in terminal
+    - run: 'npm run test' in terminal
+
 
 
 
