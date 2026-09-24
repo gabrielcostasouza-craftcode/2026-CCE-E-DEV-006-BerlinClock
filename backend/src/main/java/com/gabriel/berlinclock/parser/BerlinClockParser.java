@@ -24,8 +24,10 @@ public class BerlinClockParser {
         return sb.toString();
     }
 
+    //The lower row represents 1 hour blocks and is also made up of 4 red lamps.
     public String singleHourRow(LocalTime time) {
-        throw new UnsupportedOperationException("This convertor hasn't been implemented yet");
+        int lightedUpLamps = time.getHour() % 5; //5 because every 5th hour lamp will be on another row.
+        return "Y".repeat(lightedUpLamps) + "0".repeat(4-lightedUpLamps);
     }
 
     public String fiveHourRow(LocalTime time) {
